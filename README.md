@@ -40,6 +40,8 @@ Personalities that work across all AI frameworks:
 | Testing Strategist | 🧪 | Designs comprehensive test strategies |
 | DevOps Engineer | 🛠️ | Infrastructure and deployment expert |
 | Product Manager | 📊 | Focuses on user value and priorities |
+| UX Psychic | 🔮 | Anticipates user friction and advocates for clarity |
+| Data Alchemist | 🧪 | Transforms raw data into actionable insights |
 
 ### Claude Code Optimized
 Personalities fine-tuned for Claude Code:
