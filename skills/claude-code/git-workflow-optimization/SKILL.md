@@ -1,265 +1,524 @@
 ---
-name: claude-code-git-workflow
-description: Git workflow optimization for Claude Code. Use when working with git operations including commit message generation, branch management, PR preparation, and conflict resolution. Provides smart defaults and practical workflows specifically designed for AI-assisted coding sessions.
+name: git-workflow-optimization
+description: Git workflow optimization for Claude Code. Use when managing branches, creating commits, handling PRs, rebasing, or maintaining clean git history. Provides commands and patterns for efficient Git operations optimized for AI-assisted development.
 ---
 
-# Claude Code Git Workflow
+# Git Workflow Optimization for Claude Code
 
-Optimized git workflows for Claude Code users. Focuses on practical, AI-friendly patterns that reduce friction in the development cycle.
+Efficient Git workflows optimized for Claude Code. Focuses on clean history, clear commits, and patterns that work well with AI-assisted development.
 
-## Installation
+## Quick Start
 
-1. Add this skill to your Claude Code skills directory:
-   ```bash
-   # Clone or copy the skill to your skills folder
-   cp -r skills/claude-code/git-workflow ~/.claude/skills/
-   ```
-
-2. Or use directly by referencing the skill path in your Claude Code configuration.
-
-## Usage
-
-### Commit Message Generation
-
-Generate conventional commit messages from your changes:
-
+### Daily Workflow
 ```bash
-# Stage your changes first
-git add -p  # Review changes interactively
+# Start of day - sync with main
+git checkout main
+git pull origin main
 
-# Generate commit message based on staged changes
-/claude commit  # Claude analyzes diff and suggests message
+# Create feature branch
+git checkout -b feature/my-feature
 
-# Or manually with Claude's help
-/claude "Write a conventional commit message for these changes: $(git diff --staged)"
+# Make changes, then commit
+git add .
+git commit -m "feat: add new feature"
+
+# Push and create PR
+git push -u origin feature/my-feature
+gh pr create --title "feat: add new feature" --body "Description"
 ```
 
-**Commit Message Format:**
-```
-type(scope): subject
-
-body (optional)
-
-footer (optional)
-```
-
-**Types:**
-- `feat` - New feature
-- `fix` - Bug fix
-- `docs` - Documentation only
-- `style` - Code style (formatting, missing semi colons, etc)
-- `refactor` - Code refactoring
-- `perf` - Performance improvements
-- `test` - Adding/updating tests
-- `chore` - Build process or auxiliary tool changes
-
-### Branch Management
-
-**Feature Branch Workflow:**
+### End of Day
 ```bash
-# Start new feature
-/claude "Create a feature branch for: [description]"
-# Claude suggests: git checkout -b feat/description-here
-
-# Or manually
-git checkout -b feat/user-authentication
-
-# Keep branch up to date
-git fetch origin
-git rebase origin/main
-```
-
-**Branch Naming Conventions:**
-```
-feat/short-description      # New features
-fix/bug-description         # Bug fixes
-hotfix/critical-issue       # Production fixes
-docs/what-changed           # Documentation
-refactor/what-changed       # Refactoring
-test/what-being-tested      # Test additions
-chore/what-changed          # Maintenance
-```
-
-**Clean Up Old Branches:**
-```bash
-# Delete merged branches
-/claude "Clean up merged branches"
-# Claude runs: git branch --merged | grep -v "\\*" | xargs -n 1 git branch -d
-
-# Or manually
-git branch --merged | grep -v "\\*" | grep -v main | xargs git branch -d
-```
-
-### PR Preparation
-
-**Before Creating PR:**
-```bash
-# 1. Review all changes
-/claude "Review my changes before PR"
-
-# 2. Check for common issues
-/claude "Check for console.logs, TODOs, or debugging code"
-
-# 3. Run tests
-npm test  # or your test command
-
-# 4. Update documentation if needed
-/claude "Update README for these changes"
-```
-
-**Generate PR Description:**
-```bash
-# Get PR description from Claude
-/claude "Write a PR description for these changes: $(git diff main...HEAD)"
-```
-
-**PR Template:**
-```markdown
-## Summary
-Brief description of changes
-
-## Changes
-- Change 1
-- Change 2
-
-## Testing
-- [ ] Unit tests pass
-- [ ] Integration tests pass
-- [ ] Manual testing completed
-
-## Checklist
-- [ ] Code follows project style
-- [ ] Documentation updated
-- [ ] No console.logs or debug code
-```
-
-### Conflict Resolution
-
-**When Conflicts Occur:**
-```bash
-# 1. See which files have conflicts
+# Check status
 git status
 
-# 2. Ask Claude to help resolve
-/claude "Help resolve conflicts in src/components/UserProfile.tsx"
+# Commit work in progress
+git add .
+git commit -m "wip: progress on feature"
 
-# 3. Or resolve manually - look for:
-<<<<<<< HEAD
-your changes
-=======
-their changes
->>>>>>> branch-name
+# Push to remote
+git push
 ```
 
-**Resolution Workflow:**
-1. Identify the conflict markers
-2. Decide which changes to keep (or merge both)
-3. Remove conflict markers
-4. Stage resolved file: `git add <file>`
-5. Continue rebase/merge: `git rebase --continue` or `git merge --continue`
+## Branch Management
 
-**Prevent Conflicts:**
+### Create Feature Branch
 ```bash
-# Pull before pushing
-git pull --rebase origin main
+# From main
+git checkout main
+git pull origin main
+git checkout -b feature/description
 
-# Work on small, focused branches
-# Rebase frequently during long-running work
-git fetch origin && git rebase origin/main
+# From current branch
+git checkout -b feature/description
 ```
 
-### AI-Friendly Patterns
-
-**Commit Often:**
+### Branch Naming Conventions
 ```bash
-# Small, atomic commits are easier for AI to understand
-/claude "Commit these changes with a good message"
-# Claude suggests logical groupings
+# Features
+feature/user-authentication
+feature/add-payment-gateway
+
+# Bug fixes
+fix/login-error-message
+fix/memory-leak-in-parser
+
+# Hotfixes
+hotfix/critical-security-patch
+
+# Refactoring
+refactor/extract-user-service
+
+# Documentation
+docs/update-api-reference
 ```
 
-**Describe Intent, Not Just Changes:**
+### List and Clean Branches
 ```bash
-# Bad: "Update UserProfile.tsx"
-# Good: "feat(profile): add avatar upload validation"
+# List all branches
+git branch -a
 
-/claude "Write a commit message that explains WHY not just WHAT"
+# List merged branches (safe to delete)
+git branch --merged main
+
+# Delete local branch
+git branch -d feature/old-feature
+
+# Delete remote branch
+git push origin --delete feature/old-feature
+
+# Clean up remote-tracking branches
+git fetch --prune
 ```
 
-**Use `git add -p` for Review:**
+## Commit Best Practices
+
+### Conventional Commits
 ```bash
-# Review changes before committing
-git add -p
-# y - stage this hunk
-# n - don't stage
-# s - split into smaller hunks
-# e - edit manually
+# Format: type(scope): description
+
+# Types:
+# feat: new feature
+# fix: bug fix
+# docs: documentation
+# style: formatting, semicolons, etc
+# refactor: code restructuring
+# test: adding tests
+# chore: maintenance tasks
+
+# Examples:
+git commit -m "feat(auth): add OAuth2 login"
+git commit -m "fix(api): handle null response"
+git commit -m "docs(readme): update installation steps"
+git commit -m "refactor(utils): extract validation logic"
 ```
 
-## Tips
-
-### Best Practices
-
-1. **Commit Messages:**
-   - Use imperative mood ("Add feature" not "Added feature")
-   - Keep subject line under 50 characters
-   - Use body for explaining WHY, not HOW
-
-2. **Branch Hygiene:**
-   - Delete feature branches after merge
-   - Keep `main` always deployable
-   - Use descriptive branch names
-
-3. **Before Committing:**
-   - Review your own diff first (`git diff`)
-   - Run tests
-   - Check for sensitive data (API keys, passwords)
-
-4. **Working with Claude:**
-   - Ask Claude to review changes before commit
-   - Use Claude to generate meaningful commit messages
-   - Let Claude help resolve complex merge conflicts
-
-### Common Commands
-
+### Atomic Commits
 ```bash
-# Quick status
-git status
+# Good - one logical change per commit
+git add src/auth/login.js
+git commit -m "feat(auth): implement JWT token validation"
 
-# See what changed
-git diff
+git add src/auth/login.test.js
+git commit -m "test(auth): add tests for JWT validation"
 
-# See staged changes
-git diff --staged
+# Bad - mixing unrelated changes
+git add .
+git commit -m "various changes"
+```
 
-# Undo last commit (keep changes)
-git reset --soft HEAD~1
+### Commit Messages with Claude
+```bash
+# Generate commit message with Claude
+claude "Write a conventional commit message for these changes:
+$(git diff --staged)"
 
-# Undo changes in file
-git checkout -- <file>
+# Or use Claude to summarize
+git diff --staged | claude "Summarize these changes as a commit message"
+```
 
-# Stash work temporarily
-git stash
+## Interactive Rebase
+
+### Clean Up History Before PR
+```bash
+# Rebase last N commits
+git rebase -i HEAD~5
+
+# Commands in editor:
+# p, pick = use commit
+# r, reword = use commit, but edit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, meld into previous
+# f, fixup = like squash, but discard message
+# d, drop = remove commit
+```
+
+### Squash WIP Commits
+```bash
+# Squash last 3 commits into one
+git rebase -i HEAD~3
+# Change 'pick' to 'squash' for commits 2 and 3
+```
+
+### Reorder Commits
+```bash
+git rebase -i HEAD~5
+# Reorder lines in editor
+```
+
+### Split a Commit
+```bash
+# Start interactive rebase
+git rebase -i HEAD~3
+# Change 'pick' to 'edit' for commit to split
+
+# Reset to before the commit
+git reset HEAD^
+
+# Stage and commit separately
+git add file1.js
+git commit -m "first part"
+git add file2.js
+git commit -m "second part"
+
+# Continue rebase
+git rebase --continue
+```
+
+## Stash Management
+
+### Quick Stash
+```bash
+# Stash current changes
+git stash push -m "WIP: working on feature"
+
+# List stashes
+git stash list
+
+# Apply most recent stash
 git stash pop
 
-# View commit history
-git log --oneline --graph
+# Apply specific stash
+git stash apply stash@{1}
+
+# Drop a stash
+git stash drop stash@{1}
+
+# Clear all stashes
+git stash clear
 ```
 
-### Troubleshooting
-
-**Forgot to commit?**
+### Stash with Untracked Files
 ```bash
-/claude "I made changes but forgot to commit, help me organize these"
+# Stash including untracked files
+git stash push -u -m "description"
+
+# Stash only untracked files
+git stash push --include-untracked -m "description"
 ```
 
-**Messy commit history?**
+## Sync and Rebase
+
+### Rebase onto Main
 ```bash
-# Interactive rebase to clean up
-/claude "Help me clean up this commit history before PR"
+# Update main
+git checkout main
+git pull origin main
+
+# Rebase feature branch
+git checkout feature/my-feature
+git rebase main
+
+# If conflicts, resolve and continue
+git add .
+git rebase --continue
+
+# Force push after rebase
+git push --force-with-lease
 ```
 
-**Accidentally committed to main?**
+### Pull with Rebase
 ```bash
-# Move commits to new branch
-/claude "I committed to main by mistake, help me fix this"
+# Configure default pull behavior
+git config --global pull.rebase true
+
+# Pull with rebase
+git pull --rebase origin main
+```
+
+## Undo and Fix
+
+### Amend Last Commit
+```bash
+# Add to last commit
+git add .
+git commit --amend --no-edit
+
+# Change last commit message
+git commit --amend -m "new message"
+
+# Force push after amend
+git push --force-with-lease
+```
+
+### Reset Commands
+```bash
+# Soft reset - keep changes staged
+git reset --soft HEAD~1
+
+# Mixed reset - keep changes unstaged (default)
+git reset HEAD~1
+
+# Hard reset - discard changes
+# DANGEROUS - cannot undo
+git reset --hard HEAD~1
+```
+
+### Restore Files
+```bash
+# Restore file to last commit
+git restore filename.js
+
+# Restore file from specific commit
+git restore --source=abc123 filename.js
+
+# Unstage file
+git restore --staged filename.js
+```
+
+## Working with Remotes
+
+### Multiple Remotes
+```bash
+# Add upstream remote
+git remote add upstream https://github.com/original/repo.git
+
+# Fetch from upstream
+git fetch upstream
+
+# Rebase onto upstream main
+git rebase upstream/main
+
+# Push to your fork
+git push origin main
+```
+
+### Sync Fork
+```bash
+# Fetch upstream
+git fetch upstream
+
+# Checkout main
+git checkout main
+
+# Merge upstream changes
+git merge upstream/main
+
+# Push to your fork
+git push origin main
+```
+
+## PR Workflow
+
+### Create PR with CLI
+```bash
+# Create PR
+gh pr create \
+  --title "feat: add user authentication" \
+  --body "Implements OAuth2 login flow
+
+- Adds login page
+- Integrates with Google OAuth
+- Stores tokens securely
+
+Closes #123" \
+  --base main
+
+# Create draft PR
+gh pr create --draft --title "WIP: feature"
+```
+
+### Update PR After Review
+```bash
+# Make changes
+git add .
+git commit -m "fix: address review comments"
+
+# Squash fix commits
+git rebase -i HEAD~3
+
+# Force push
+git push --force-with-lease
+```
+
+### Review PR
+```bash
+# Checkout PR locally
+gh pr checkout 123
+
+# View PR diff
+gh pr diff 123
+
+# View PR checks
+gh pr checks 123
+
+# Merge PR
+gh pr merge 123 --squash
+```
+
+## Cherry-Pick and Backport
+
+### Cherry-Pick Commits
+```bash
+# Cherry-pick single commit
+git cherry-pick abc123
+
+# Cherry-pick range
+git cherry-pick abc123^..def456
+
+# Cherry-pick without committing
+git cherry-pick -n abc123
+```
+
+### Backport Fix
+```bash
+# Create backport branch from release branch
+git checkout release/v1.2
+git checkout -b backport/fix-for-v1.2
+
+# Cherry-pick fix from main
+git cherry-pick abc123
+
+# Push and create PR
+git push -u origin backport/fix-for-v1.2
+gh pr create --base release/v1.2
+```
+
+## Bisect for Debugging
+
+### Find Bug with Git Bisect
+```bash
+# Start bisect
+git bisect start
+
+# Mark current commit as bad
+git bisect bad
+
+# Mark known good commit
+git bisect good v1.0.0
+
+# Test each commit, mark good or bad
+git bisect good  # or bad
+
+# When done, reset
+git bisect reset
+```
+
+### Automated Bisect
+```bash
+# Run script to test each commit
+git bisect start HEAD v1.0.0
+git bisect run npm test
+```
+
+## Aliases for Speed
+
+### Useful Git Aliases
+```bash
+# Add to ~/.gitconfig
+[alias]
+    # Short commands
+    st = status -sb
+    co = checkout
+    br = branch
+    ci = commit
+    unstage = restore --staged
+    last = log -1 HEAD
+    
+    # Visual log
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    
+    # Today's commits
+    today = log --since="00:00:00" --author="$(git config user.name)" --pretty=format:'%h %s'
+    
+    # Undo last commit (keep changes)
+    undo = reset HEAD~1 --mixed
+    
+    # Show diff for last commit
+    diff-last = diff HEAD~1 HEAD
+    
+    # Delete merged branches
+    cleanup = !git branch --merged | grep -v "\\*\\|main\\|master\\|develop" | xargs -n 1 git branch -d
+```
+
+## Claude-Specific Workflows
+
+### Analyze Commit History
+```bash
+# Ask Claude to review recent commits
+claude "Review these recent commits for issues:
+$(git log --oneline -20)"
+```
+
+### Generate Release Notes
+```bash
+# Generate notes from commits
+claude "Generate release notes from these commits:
+$(git log --oneline v1.0.0..HEAD)"
+```
+
+### Review Branch Changes
+```bash
+# Review all changes in branch
+claude "Review these changes:
+$(git diff main...HEAD)"
+```
+
+## Troubleshooting
+
+### Resolve Merge Conflicts
+```bash
+# See conflicted files
+git status
+
+# See conflict details
+git diff
+
+# Resolve conflicts in specific file
+# Edit file, then:
+git add resolved-file.js
+
+# Continue after resolving
+git rebase --continue
+# or
+git merge --continue
+
+# Abort and start over
+git rebase --abort
+# or
+git merge --abort
+```
+
+### Recover Lost Commits
+```bash
+# View reflog
+git reflog
+
+# Recover from reflog
+git checkout HEAD@{5}
+
+# Or reset to specific reflog entry
+git reset --hard HEAD@{5}
+```
+
+### Fix Diverged Branches
+```bash
+# Fetch latest
+git fetch origin
+
+# Reset to match remote (DANGEROUS)
+git reset --hard origin/main
+
+# Or rebase onto remote
+git rebase origin/main
 ```
