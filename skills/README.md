@@ -16,13 +16,21 @@ skills/
 ### Claude Code
 - **git-workflow-optimization** - Optimize Git workflows for cleaner history, efficient collaboration, and safer deployments
 - **testing-debugging** - Testing and debugging workflows for software development
+- **performance-optimization** - Identify and fix performance bottlenecks, profiling, caching strategies
+- **security-best-practices** - Security patterns, vulnerability prevention, OWASP-aligned practices
 
 ### Codex  
 - **git-workflow-optimization** - Optimize Git workflows for cleaner history, efficient collaboration, and safer deployments
 - **testing-debugging** - Testing and debugging workflows for software development
+- **performance-optimization** - Identify and fix performance bottlenecks, profiling, caching strategies
+- **security-best-practices** - Security patterns, vulnerability prevention, OWASP-aligned practices
 
 ### Universal
+- **code-review-checklist** - Systematic code review checklist for quality and maintainability
+- **docker-local-dev** - Standardized Docker setup for local development environments
 - **git-workflow-optimization** - Optimize Git workflows for cleaner history, efficient collaboration, and safer deployments
+- **performance-optimization** - Identify and fix performance bottlenecks, profiling, caching strategies
+- **security-best-practices** - Security patterns, vulnerability prevention, OWASP-aligned practices
 - **testing-debugging** - Testing and debugging workflows for software development
 
 ## Adding a New Skill
