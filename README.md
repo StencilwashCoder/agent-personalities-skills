@@ -42,6 +42,11 @@ Personalities that work across all AI frameworks:
 | Product Manager | 📊 | Focuses on user value and priorities |
 | UX Psychic | 🔮 | Anticipates user friction and advocates for clarity |
 | Data Alchemist | 🧪 | Transforms raw data into actionable insights |
+| Legacy Code Archaeologist | 🏛️ | Excavates and understands ancient, undocumented codebases |
+| Concurrency Whisperer | 🔄 | Master of threads, async, and parallel execution |
+| API Migration Specialist | 🚚 | Expert at moving systems between APIs safely |
+| Test-Driven Craftsman | 🔨 | Builds software through tests first, red-green-refactor |
+| Git Archaeologist | 📜 | Master of git history, digger of ancient commits |
 
 ### Claude Code Optimized
 Personalities fine-tuned for Claude Code:
