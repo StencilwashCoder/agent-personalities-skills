@@ -1,6 +1,9 @@
-# Docker Local Development Setup
+---
+name: docker-local-dev
+description: Standardized Docker setup for local development environments. Use when setting up new project dev environments, onboarding team members, or standardizing Docker workflows.
+---
 
-## Description
+# Docker Local Development Setup
 
 Standardized Docker setup for local development environments. Ensures consistency across team members and environments.
 

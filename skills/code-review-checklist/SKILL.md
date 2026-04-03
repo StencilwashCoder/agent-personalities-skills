@@ -1,6 +1,9 @@
-# Code Review Checklist
+---
+name: code-review-checklist
+description: Systematic code review checklist for quality, security, and maintainability. Use when reviewing pull requests, doing pre-commit self-review, or auditing code quality.
+---
 
-## Description
+# Code Review Checklist
 
 Systematic code review checklist to ensure quality, security, and maintainability. Use for every PR review.
 
