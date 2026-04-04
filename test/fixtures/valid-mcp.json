@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/docs"],
+      "transport": "stdio"
+    },
+    "github": {
+      "url": "https://api.github.com/mcp",
+      "transport": "http",
+      "auth": {
+        "type": "bearer",
+        "tokenEnv": "GITHUB_TOKEN"
+      }
+    },
+    "postgres": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "mcp/postgres", "postgresql://localhost/mydb"],
+      "transport": "stdio",
+      "env": {
+        "PGUSER": "admin",
+        "PGPASSWORD": "${PG_PASSWORD}"
+      }
+    }
+  }
+}

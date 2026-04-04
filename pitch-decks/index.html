@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Decks - PatchRat AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #888;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+        .summary {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+        .summary h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .stat {
+            background: rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .decks {
+            display: grid;
+            gap: 30px;
+        }
+        .deck {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 35px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .deck:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+        .deck-number {
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .deck-revenue {
+            text-align: right;
+        }
+        .revenue-amount {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .revenue-label {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .deck h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .deck p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        .deck-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .meta-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .meta-label {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Pitch Decks</h1>
+        <p class="subtitle">3 Money-Making Opportunities | Autonomous Operations | Minimal Eric Involvement</p>
+
+        <div class="summary">
+            <h2>📊 Executive Summary</h2>
+            <p>Three autonomous business opportunities that leverage AI capabilities to generate revenue with minimal ongoing human involvement. All three are technically feasible, address real market needs, and can be launched within weeks.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">$725K</div>
+                    <div class="stat-label">Year 1 Revenue (Combined)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$2.5M</div>
+                    <div class="stat-label">Year 2 Revenue (Combined)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">35x</div>
+                    <div class="stat-label">Year 1 ROI</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$11K</div>
+                    <div class="stat-label">Total Startup Cost</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="decks">
+            <div class="deck">
+                <div class="deck-header">
+                    <div class="deck-number">1</div>
+                    <div class="deck-revenue">
+                        <div class="revenue-amount">$246K</div>
+                        <div class="revenue-label">Year 1 Revenue</div>
+                    </div>
+                </div>
+                <h3>MCP Prime Registry</h3>
+                <p>A curated MCP server marketplace that solves the "discovery and quality" problem in the rapidly growing MCP ecosystem. Unlike community registries with 10,000+ unvetted servers, we offer a premium tier of verified, secure, well-documented MCP servers with revenue sharing for authors.</p>
+                <div class="deck-meta">
+                    <div class="meta-item">
+                        <span class="meta-value">$5K</span>
+                        <span class="meta-label">Startup Cost</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-value">65%</span>
+                        <span class="meta-label">Profit Margin</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-value">$1.2M</span>
+                        <span class="meta-label">Year 2 Revenue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck">
+                <div class="deck-header">
+                    <div class="deck-number">2</div>
+                    <div class="deck-revenue">
+                        <div class="revenue-amount">$239K</div>
+                        <div class="revenue-label">Year 1 Revenue</div>
+                    </div>
+                </div>
+                <h3>AI Research-as-a-Service</h3>
+                <p>Subscription service providing deep, automated research on AI/ML repositories, technologies, and trends. Target customers: VCs, AI startups, enterprise R&D teams who need to stay ahead of the rapidly evolving AI landscape without spending hours on GitHub.</p>
+                <div class="deck-meta">
+                    <div class="meta-item">
+                        <span class="meta-value">$3K</span>
+                        <span class="meta-label">Startup Cost</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-value">70%</span>
+                        <span class="meta-label">Profit Margin</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-value">$600K</span>
+                        <span class="meta-label">Year 2 Revenue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck">
+                <div class="deck-header">
+                    <div class="deck-number">3</div>
+                    <div class="deck-revenue">
+                        <div class="revenue-amount">$240K</div>
+                        <div class="revenue-label">Year 1 Revenue</div>
+                    </div>
+                </div>
+                <h3>Technical Content Automation Agency</h3>
+                <p>Done-for-you technical content service for developer tools, open-source projects, and API companies. Automates the creation of documentation, blog posts, changelogs, and tutorials—high-quality technical content that drives SEO, adoption, and developer engagement.</p>
+                <div class="deck-meta">
+                    <div class="meta-item">
+                        <span class="meta-value">$3K</span>
+                        <span class="meta-label">Startup Cost</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-value">80%</span>
+                        <span class="meta-label">Profit Margin</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-value">$720K</span>
+                        <span class="meta-label">Year 2 Revenue</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📁 Full pitch decks available in workspace: <code>/root/.openclaw/workspace/pitch-decks/</code></p>
+            <p>Prepared by PatchRat AI | March 26, 2026</p>
+        </div>
+    </div>
+</body>
+</html>

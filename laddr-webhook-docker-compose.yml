@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  laddr-webhook:
+    build:
+      context: .
+      dockerfile: laddr-webhook.Dockerfile
+    container_name: laddr-webhook
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - TELEGRAM_TOKEN=8600179570:AAGn9cHOVqgj5JYJ9jAcXR-BlSrgwRJbWTw
+      - TELEGRAM_CHAT=84020120
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,73 @@
+name: 'MCP Server Setup'
+description: 'Automated setup for Model Context Protocol (MCP) servers with Claude Code'
+author: 'Eric Grill'
+branding:
+  icon: 'server'
+  color: 'purple'
+
+inputs:
+  server-name:
+    description: 'Name of the MCP server to install'
+    required: true
+  server-source:
+    description: 'Source of the MCP server (npm/pypi/github)'
+    required: true
+    default: 'pypi'
+  claude-config-path:
+    description: 'Path to Claude Code configuration'
+    required: false
+    default: '~/.claude'
+  
+outputs:
+  server-path:
+    description: 'Path where server was installed'
+  config-updated:
+    description: 'Whether Claude config was updated'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install MCP Server
+      shell: bash
+      run: |
+        case "${{ inputs.server-source }}" in
+          npm)
+            npm install -g ${{ inputs.server-name }}
+            ;;
+          pypi)
+            pip install ${{ inputs.server-name }}
+            ;;
+          github)
+            REPO="${{ inputs.server-name }}"
+            git clone "https://github.com/$REPO.git" /tmp/mcp-server
+            cd /tmp/mcp-server
+            if [ -f "pyproject.toml" ]; then
+              pip install -e .
+            elif [ -f "package.json" ]; then
+              npm install
+              npm link
+            fi
+            ;;
+        esac
+        
+        echo "server-path=/usr/local/bin/${{ inputs.server-name }}" >> $GITHUB_OUTPUT
+    
+    - name: Update Claude Config
+      shell: bash
+      run: |
+        CONFIG_DIR="${{ inputs.claude-config-path }}"
+        mkdir -p "$CONFIG_DIR"
+        
+        # Create or update MCP config
+        cat > "$CONFIG_DIR/mcp.json" <>OF
+        {
+          "mcpServers": {
+            "${{ inputs.server-name }}": {
+              "command": "${{ inputs.server-name }}",
+              "args": []
+            }
+          }
+        }
+        EOF
+        
+        echo "config-updated=true" >> $GITHUB_OUTPUT

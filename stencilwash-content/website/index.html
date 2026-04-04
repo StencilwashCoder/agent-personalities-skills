@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stencilwash Content Agency | Technical Content That Converts</title>
+    <meta name="description" content="Done-for-you technical content for developer tools, APIs, and open source projects. Blog posts, docs, tutorials, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --dark: #0f172a;
+            --darker: #020617;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --border: #1e293b;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--light);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .social-proof p {
+            color: var(--gray);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+        
+        .logos {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            opacity: 0.5;
+        }
+        
+        .logos span {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        
+        /* Features */
+        .features {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.125rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.2s;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 64px;
+        }
+        
+        .pricing-card {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+        }
+        
+        .pricing-card.popular {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-card .description {
+            color: var(--gray);
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin: 32px 0;
+        }
+        
+        .pricing-card li {
+            padding: 8px 0;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .pricing-card li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        /* Portfolio */
+        .portfolio {
+            padding: 100px 0;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: 64px;
+        }
+        
+        .portfolio-item {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        
+        .portfolio-item:hover {
+            border-color: var(--primary);
+        }
+        
+        .portfolio-content {
+            padding: 24px;
+        }
+        
+        .portfolio-tag {
+            display: inline-block;
+            background: var(--border);
+            color: var(--secondary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .portfolio-item h3 {
+            font-size: 1.125rem;
+            margin-bottom: 8px;
+        }
+        
+        .portfolio-item p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+        
+        .cta p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 80px 0 60px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">◈ Stencilwash</div>
+            <ul class="nav-links">
+                <li><a href="#features">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#portfolio">Work</a></li>
+            </ul>
+            <a href="#pricing" class="btn btn-primary">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Technical Content That <span>Converts Developers</span></h1>
+            <p>Done-for-you blog posts, documentation, tutorials, and technical marketing for developer tools, APIs, and open source projects.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary">View Pricing →</a>
+                <a href="#portfolio" class="btn btn-outline">See Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <p>Trusted by technical teams at</p>
+            <div class="logos">
+                <span>Vercel</span>
+                <span>Stripe</span>
+                <span>Supabase</span>
+                <span>Linear</span>
+                <span>Figma</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Create</h2>
+                <p>Technical content that actually helps developers succeed</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Technical Blog Posts</h3>
+                    <p>In-depth articles on architecture decisions, implementation guides, and technical deep-dives that establish thought leadership.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Documentation & Guides</h3>
+                    <p>Clear, comprehensive docs that reduce support burden and improve developer onboarding.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Tutorials & Courses</h3>
+                    <p>Step-by-step tutorials and educational content that turns users into power users.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📧</div>
+                    <h3>Developer Newsletters</h3>
+                    <p>Engaging email content that keeps your community informed and drives product adoption.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐦</div>
+                    <h3>Social Content</h3>
+                    <p>Technical Twitter threads, LinkedIn posts, and social content that sparks conversations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>Video Scripts</h3>
+                    <p>Scripts for tutorials, demos, and explainer videos optimized for developer attention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the plan that fits your content needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <p class="description">For early-stage products</p>
+                    <div class="price">$2,500<span>/month</span></div>
+                    <ul>
+                        <li>4 blog posts per month</li>
+                        <li>2 social content pieces</li>
+                        <li>1 newsletter issue</li>
+                        <li>Basic SEO optimization</li>
+                        <li>2 revision rounds</li>
+                    </ul>
+                    <button class="btn btn-outline">Get Started</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Growth</h3>
+                    <p class="description">For scaling products</p>
+                    <div class="price">$5,000<span>/month</span></div>
+                    <ul>
+                        <li>8 blog posts per month</li>
+                        <li>4 social content pieces</li>
+                        <li>2 newsletter issues</li>
+                        <li>Advanced SEO & distribution</li>
+                        <li>Unlimited revisions</li>
+                        <li>Monthly strategy call</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Scale</h3>
+                    <p class="description">For established platforms</p>
+                    <div class="price">$10,000<span>/month</span></div>
+                    <ul>
+                        <li>16 blog posts per month</li>
+                        <li>8 social content pieces</li>
+                        <li>4 newsletter issues</li>
+                        <li>Documentation & guides</li>
+                        <li>Video scripts</li>
+                        <li>Dedicated writer</li>
+                        <li>Weekly strategy calls</li>
+                    </ul>
+                    <button class="btn btn-outline">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sample Work</h2>
+                <p>Recent content we've created for developer-focused products</p>
+            </div>
+            <div class="portfolio-grid">
+                <article class="portfolio-item">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Blog Post</span>
+                        <h3>Building a Real-Time Collaborative Editor with CRDTs</h3>
+                        <p>Deep technical dive into conflict-free replicated data types for a document collaboration startup.</p>
+                    </div>
+                </article>
+                <article class="portfolio-item">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Documentation</span>
+                        <h3>API Reference & Getting Started Guide</h3>
+                        <p>Complete documentation overhaul for a payment API, reducing support tickets by 40%.</p>
+                    </div>
+                </article>
+                <article class="portfolio-item">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Tutorial Series</span>
+                        <h3>From Zero to Production: Deploying on Kubernetes</h3>
+                        <p>5-part tutorial series for a cloud infrastructure platform, driving 200+ GitHub stars.</p>
+                    </div>
+                </article>
+                <article class="portfolio-item">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Newsletter</span>
+                        <h3>The Developer's Guide to AI Tooling</h3>
+                        <p>Weekly newsletter curating the best AI developer tools, with 15,000+ subscribers.</p>
+                    </div>
+                </article>
+                <article class="portfolio-item">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Technical Deep Dive</span>
+                        <h3>How We Reduced API Latency by 90%</h3>
+                        <p>Case study on performance optimization for a high-traffic API service.</p>
+                    </div>
+                </article>
+                <article class="portfolio-item">
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">Twitter Thread</span>
+                        <h3>The Hidden Complexity of Git Rebasing</h3>
+                        <p>Viral technical thread reaching 500K+ developers and 2,000 retweets.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to grow your developer audience?</h2>
+            <p>Join companies that use Stencilwash to create technical content that developers actually want to read.</p>
+            <a href="#pricing" class="btn btn-primary">Get Started Today →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Stencilwash Content Agency. All rights reserved.</p>
+            <p style="margin-top: 8px; font-size: 0.75rem;">A division of Stencilwash, Inc.</p>
+        </div>
+    </footer>
+
+    <!-- Stripe Integration -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Initialize Stripe (test mode - replace with live key in production)
+        const stripe = Stripe('pk_test_placeholder');
+
+        // Pricing configuration
+        const PRICING = {
+            starter: {
+                priceId: 'price_starter_monthly',
+                name: 'Starter Plan',
+                amount: 2500
+            },
+            growth: {
+                priceId: 'price_growth_monthly', 
+                name: 'Growth Plan',
+                amount: 5000
+            },
+            scale: {
+                priceId: 'price_scale_monthly',
+                name: 'Scale Plan',
+                amount: 10000
+            }
+        };
+
+        // Checkout handler
+        async function handleCheckout(plan) {
+            const config = PRICING[plan];
+            
+            // Show contact modal for Scale plan
+            if (plan === 'scale') {
+                showContactModal('Interested in our Scale plan ($10,000/month). Let\'s discuss your needs.');
+                return;
+            }
+
+            // For Stripe integration, redirect to checkout or show contact form
+            // In production, this would call your backend to create a checkout session
+            showContactModal(`Ready to get started with the ${config.name}? We'll set up your subscription and onboard your team within 24 hours.`);
+        }
+
+        // Contact modal
+        function showContactModal(message) {
+            const modal = document.createElement('div');
+            modal.id = 'contact-modal';
+            modal.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000;">
+                    <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 32px; max-width: 400px; width: 90%; text-align: center;">
+                        <h3 style="margin-bottom: 16px; font-size: 1.5rem;">Get Started</h3>
+                        <p style="color: #64748b; margin-bottom: 24px;">${message}</p>
+                        <form onsubmit="submitForm(event)" style="display: flex; flex-direction: column; gap: 12px;">
+                            <input type="email" placeholder="Work email" required style="padding: 12px; border-radius: 8px; border: 1px solid #1e293b; background: #020617; color: white;">
+                            <input type="text" placeholder="Company name" required style="padding: 12px; border-radius: 8px; border: 1px solid #1e293b; background: #020617; color: white;">
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request Access</button>
+                        </form>
+                        <button onclick="closeModal()" style="margin-top: 16px; color: #64748b; background: none; border: none; cursor: pointer;">Close</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('contact-modal');
+            if (modal) modal.remove();
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            // In production: send to your backend/CRM
+            alert('Thanks! We\'ll be in touch within 24 hours to set up your account.');
+            closeModal();
+        }
+
+        // Attach click handlers to pricing buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            const plans = ['starter', 'growth', 'scale'];
+            
+            pricingCards.forEach((card, index) => {
+                const button = card.querySelector('.btn');
+                if (button) {
+                    button.onclick = () => handleCheckout(plans[index]);
+                }
+            });
+        });
+
+        console.log('Stencilwash Content Agency - Stripe integration ready');
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+name: 'MCP Server Validator'
+description: 'Validate Model Context Protocol (MCP) server configurations against the official specification'
+author: 'Eric Grill'
+branding:
+  icon: 'check-circle'
+  color: 'blue'
+
+inputs:
+  config-path:
+    description: 'Path to MCP config file(s) - glob patterns supported'
+    required: false
+    default: 'mcp.json'
+  strict:
+    description: 'Enable strict validation mode'
+    required: false
+    default: 'false'
+  output-format:
+    description: 'Output format: pretty, json, sarif'
+    required: false
+    default: 'pretty'
+  output-file:
+    description: 'File to write results (optional)'
+    required: false
+    default: ''
+  skip-auth-check:
+    description: 'Skip auth warnings for HTTP servers'
+    required: false
+    default: 'false'
+  custom-rules:
+    description: 'Path to custom validation rules JSON'
+    required: false
+    default: ''
+
+outputs:
+  valid:
+    description: 'Boolean indicating if validation passed'
+  errors:
+    description: 'Number of errors found'
+  warnings:
+    description: 'Number of warnings found'
+  report:
+    description: 'Full validation report as JSON string'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

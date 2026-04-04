@@ -1,0 +1,45 @@
+name: MCP Server Registry Sync
+on:
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly on Sunday at 2 AM
+  workflow_dispatch:
+
+jobs:
+  sync-registry:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: pip install requests pyyaml
+      
+      - name: Update MCP registry entries
+        run: python scripts/update-mcp-registry.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update MCP server registry entries'
+          title: 'chore: automated MCP server registry sync'
+          body: |
+            This PR updates the MCP server registry with the latest metadata.
+            
+            Changes include:
+            - Updated star counts
+            - New server additions
+            - Description updates
+            - Link validation
+          branch: chore/update-registry
+          delete-branch: true

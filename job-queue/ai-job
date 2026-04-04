@@ -1,0 +1,154 @@
+#!/bin/bash
+# AI Job Queue CLI Wrapper
+
+set -e
+
+JOBS_DIR="/root/.openclaw/workspace/job-queue"
+
+# Colors
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+case "$1" in
+  submit|s)
+    shift
+    python3 "$JOBS_DIR/submit_job.py" "$@"
+    ;;
+  
+  status|st)
+    echo -e "${BLUE}Checking job queue status...${NC}"
+    python3 -c "
+import boto3
+import os
+
+s3 = boto3.client(
+    's3',
+    endpoint_url=os.getenv('S3_ENDPOINT', 'https://s3.chainbytes.io'),
+    aws_access_key_id=os.getenv('S3_ACCESS_KEY', 'chainbytes'),
+    aws_secret_access_key=os.getenv('S3_SECRET_KEY', 'chainbytes2026'),
+    region_name=os.getenv('S3_REGION', 'us-east-1')
+)
+
+bucket = 'ai-jobs'
+folders = ['incoming', 'processing', 'completed', 'failed']
+
+for folder in folders:
+    try:
+        response = s3.list_objects_v2(Bucket=bucket, Prefix=f'{folder}/')
+        count = len([o for o in response.get('Contents', []) if o['Key'].endswith('.json')])
+        print(f'  {folder:12}: {count} jobs')
+    except Exception as e:
+        print(f'  {folder:12}: error - {e}')
+"
+    ;;
+  
+  result|r)
+    if [ -z "$2" ]; then
+      echo "Usage: ai-job result <job-id>"
+      exit 1
+    fi
+    
+    python3 -c "
+import boto3
+import json
+import os
+
+s3 = boto3.client(
+    's3',
+    endpoint_url=os.getenv('S3_ENDPOINT', 'https://s3.chainbytes.io'),
+    aws_access_key_id=os.getenv('S3_ACCESS_KEY', 'chainbytes'),
+    aws_secret_access_key=os.getenv('S3_SECRET_KEY', 'chainbytes2026'),
+    region_name=os.getenv('S3_REGION', 'us-east-1')
+)
+
+bucket = 'ai-jobs'
+result_key = f'completed/{'$2'}-result.json'
+
+try:
+    response = s3.get_object(Bucket=bucket, Key=result_key)
+    result = json.loads(response['Body'].read())
+    
+    if result['success']:
+        print(f'✅ Job completed in {result[\"result\"][\"duration_seconds\"]:.2f}s')
+        print(f'\n📝 Result:\n{result[\"result\"][\"content\"]}')
+    else:
+        print(f'❌ Job failed: {result.get(\"error\", \"Unknown error\")}')
+except s3.exceptions.NoSuchKey:
+    print('⏳ Result not ready yet')
+except Exception as e:
+    print(f'Error: {e}')
+"
+    ;;
+  
+  build)
+    echo -e "${BLUE}Building worker Docker image...${NC}"
+    cd "$JOBS_DIR"
+    docker build -t ai-job-worker:latest .
+    echo -e "${GREEN}✓ Worker image built${NC}"
+    ;;
+  
+  up|start)
+    echo -e "${BLUE}Starting worker...${NC}"
+    cd "$JOBS_DIR"
+    docker-compose up -d
+    echo -e "${GREEN}✓ Worker started${NC}"
+    docker-compose logs -f
+    ;;
+  
+  down|stop)
+    echo -e "${YELLOW}Stopping worker...${NC}"
+    cd "$JOBS_DIR"
+    docker-compose down
+    echo -e "${GREEN}✓ Worker stopped${NC}"
+    ;;
+  
+  logs)
+    cd "$JOBS_DIR"
+    docker-compose logs -f
+    ;;
+  
+  test)
+    echo -e "${BLUE}Submitting test job...${NC}"
+    python3 "$JOBS_DIR/submit_job.py" \
+      --prompt "What is 2+2? Answer with just the number." \
+      --priority 1 \
+      --model "local-model" \
+      --wait
+    ;;
+  
+  help|*)
+    cat <<EOF
+AI Job Queue CLI
+
+Usage: ai-job <command> [options]
+
+Commands:
+  submit, s     Submit a job to the queue
+  status, st    Show queue status
+  result, r     Get result for a job ID
+  build         Build worker Docker image
+  up, start     Start worker container
+  down, stop    Stop worker container
+  logs          View worker logs
+  test          Submit a test job
+  help          Show this help
+
+Submit Options:
+  -p, --prompt    User prompt (required)
+  -s, --system    System prompt
+  --priority      Priority 1-10 (1=high, default: 5)
+  -m, --model     Model name (default: local-model)
+  --temp          Temperature (default: 0.7)
+  --tokens        Max tokens (default: 4096)
+  -w, --wait      Wait for result
+
+Examples:
+  ai-job submit -p "Write a Python function" --priority 1 --wait
+  ai-job s -p "Explain Docker" -m "qwen-2.5-coder" --temp 0.5
+  ai-job status
+  ai-job result abc-123-def
+EOF
+    ;;
+esac

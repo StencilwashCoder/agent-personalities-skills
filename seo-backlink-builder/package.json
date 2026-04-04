@@ -1,0 +1,37 @@
+{
+  "name": "seo-backlink-builder",
+  "version": "1.0.0",
+  "description": "Automated SEO backlink building for ericgrill.com across developer platforms",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "optimize": "node index.js",
+    "optimize:github": "node src/platforms/github.js",
+    "optimize:devto": "node src/platforms/devto.js",
+    "optimize:hashnode": "node src/platforms/hashnode.js",
+    "report": "node src/report.js",
+    "validate": "node src/validate-env.js",
+    "setup": "node src/setup.js"
+  },
+  "keywords": [
+    "seo",
+    "backlink",
+    "developer",
+    "github",
+    "devto",
+    "hashnode",
+    "producthunt"
+  ],
+  "author": "Eric Grill",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "axios": "^1.6.0",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0"
+  }
+}

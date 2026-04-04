@@ -1,0 +1,21 @@
+{
+  "name": "agent-personalities-skills",
+  "description": "136 specialized AI agent definitions and reusable skills for Claude Code — covering development, infrastructure, data/AI, security, business, and more",
+  "version": "1.0.0",
+  "author": {
+    "name": "StencilwashCoder"
+  },
+  "repository": "https://github.com/StencilwashCoder/agent-personalities-skills",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "skills",
+    "personalities",
+    "claude-code",
+    "subagents",
+    "development",
+    "infrastructure",
+    "data-ai",
+    "security"
+  ]
+}

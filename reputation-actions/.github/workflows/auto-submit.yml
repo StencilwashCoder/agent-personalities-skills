@@ -1,0 +1,50 @@
+name: Auto-Submit to Directories
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'package.json'
+  workflow_dispatch:
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Extract project info
+        id: info
+        run: |
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          echo "repo_name=$REPO_NAME" >> $GITHUB_OUTPUT
+          echo "repo_url=https://github.com/$GITHUB_REPOSITORY" >> $GITHUB_OUTPUT
+          
+          # Extract description from package.json or README
+          if [ -f package.json ]; then
+            DESC=$(jq -r '.description // empty' package.json)
+          else
+            DESC=$(head -5 README.md | grep -v '^#' | head -1)
+          fi
+          echo "description=$DESC" >> $GITHUB_OUTPUT
+      
+      - name: Submit to DevHunt
+        run: |
+          curl -X POST "https://devhunt.org/api/submissions" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "${{ steps.info.outputs.repo_name }}",
+              "tagline": "${{ steps.info.outputs.description }}",
+              "url": "${{ steps.info.outputs.repo_url }}",
+              "category": "developer-tools"
+            }' || true
+      
+      - name: Submit to OpenSourceHub
+        run: |
+          curl -X POST "https://opensourcehub.io/api/projects" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "${{ steps.info.outputs.repo_name }}",
+              "repository": "${{ steps.info.outputs.repo_url }}",
+              "description": "${{ steps.info.outputs.description }}"
+            }' || true

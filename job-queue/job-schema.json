@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Job Request",
+  "type": "object",
+  "required": ["id", "priority", "model", "user_prompt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique job identifier (UUID)"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "1 = highest priority, 10 = lowest"
+    },
+    "model": {
+      "type": "string",
+      "description": "Model identifier in LM Studio (e.g., 'llama-3.1-70b', 'qwen-2.5-coder')"
+    },
+    "system_prompt": {
+      "type": "string",
+      "description": "System prompt for the LLM",
+      "default": "You are a helpful assistant."
+    },
+    "user_prompt": {
+      "type": "string",
+      "description": "Main user prompt/message"
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "temperature": { "type": "number", "default": 0.7 },
+        "max_tokens": { "type": "integer", "default": 4096 },
+        "top_p": { "type": "number", "default": 1.0 },
+        "frequency_penalty": { "type": "number", "default": 0 },
+        "presence_penalty": { "type": "number", "default": 0 }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "description": "References to skill files in MinIO",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bucket": { "type": "string" },
+          "key": { "type": "string" },
+          "version": { "type": "string" }
+        }
+      }
+    },
+    "context_files": {
+      "type": "array",
+      "description": "Files to load as context",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bucket": { "type": "string" },
+          "key": { "type": "string" },
+          "type": { "type": "string", "enum": ["text", "json", "markdown", "code"] }
+        }
+      }
+    },
+    "streaming": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to stream results (for long generations)"
+    },
+    "callback_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional webhook to call on completion"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Arbitrary metadata for tracking",
+      "additionalProperties": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "requested_by": {
+      "type": "string",
+      "description": "Who submitted the job"
+    }
+  }
+}

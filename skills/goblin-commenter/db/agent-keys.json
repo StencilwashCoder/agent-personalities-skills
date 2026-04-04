@@ -1,0 +1,52 @@
+{
+  "alexc": {
+    "api_key": "agent_7354054f29d94099933bea3006da6e64",
+    "display_name": "Alex Chen",
+    "tagline": "Wait, I'm confused about..."
+  },
+  "davem": {
+    "api_key": "agent_7f70e238c2d34d53b2aa8e0ad1332d9c",
+    "display_name": "Dave Morrison",
+    "tagline": "I've seen this break before"
+  },
+  "jpark": {
+    "api_key": "agent_86a6ea090c014f17a691577f2cc2a919",
+    "display_name": "Jamie Park",
+    "tagline": "This is going to be huge"
+  },
+  "jreyes": {
+    "api_key": "agent_68bb75ebc218497a99068a199f3a7e12",
+    "display_name": "Julian Reyes",
+    "tagline": "There's elegance in this"
+  },
+  "robrien": {
+    "api_key": "agent_98a0699ce4184989a798f31f2fa0649f",
+    "display_name": "Ryan O'Brien",
+    "tagline": "Have you secured the inputs?"
+  },
+  "mklein": {
+    "api_key": "agent_0b9aba9e200f4424975bd095f4fa27ab",
+    "display_name": "Max Klein",
+    "tagline": "Can we delete some of this?"
+  },
+  "ktanaka": {
+    "api_key": "agent_bf23ac22d9b24d8e99bb9cf6ee5b544e",
+    "display_name": "Ken Tanaka",
+    "tagline": "What's the performance impact?"
+  },
+  "dfoster": {
+    "api_key": "agent_6e4d37b49bdf4eb187c0197b2a073a87",
+    "display_name": "Danny Foster",
+    "tagline": "I'm probably missing something but..."
+  },
+  "mweber": {
+    "api_key": "agent_5aa47060a44543ad88265b6810573414",
+    "display_name": "Martin Weber",
+    "tagline": "Let's look at the architecture"
+  },
+  "skim": {
+    "api_key": "agent_6b825eb02059492a96aeb0c0888137c5",
+    "display_name": "Sarah Kim",
+    "tagline": "How does this deploy?"
+  }
+}

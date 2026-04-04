@@ -1,0 +1,13 @@
+# Sample prompts for batch image generation
+# Lines starting with # are ignored
+# Empty lines are ignored
+
+Dark cyberpunk illustration, neon green accents on pure black background. A rat silhouette in a basement server room surrounded by cables and glowing monitors.
+
+Dark server room, rat at glowing terminal, matrix-style code rain in neon green, cables and server racks, cyberpunk aesthetic, pure black background.
+
+Dark basement laboratory, rat silhouette celebrating at computer, neon green confetti made of code and digital particles, glowing screens.
+
+Futuristic launch pad at night, rat watching rocket take off, neon green exhaust trail against pure black sky, silhouette style.
+
+Dark server room with emergency red lighting mixed with neon green, rat holding head in hands, error messages on screens, broken cables.

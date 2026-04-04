@@ -1,0 +1,31 @@
+{
+  "repos": [
+    {"url": "https://github.com/agiresearch/A-mem", "name": "agiresearch/A-mem", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/cobusgreyling/NVIDIA-Nemotron-3-Super", "name": "cobusgreyling/NVIDIA-Nemotron-3-Super", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/CortexReach/memory-lancedb-pro", "name": "CortexReach/memory-lancedb-pro", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/iblai/iblai-openclaw-router", "name": "iblai/iblai-openclaw-router", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/jina-ai/reader", "name": "jina-ai/reader", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/langchain-ai/deepagents", "name": "langchain-ai/deepagents", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/runesleo/claude-code-workflow", "name": "runesleo/claude-code-workflow", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/thu-ml/Causal-Forcing", "name": "thu-ml/Causal-Forcing", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/uluckyXH/OpenMOSS", "name": "uluckyXH/OpenMOSS", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/unbrowse-ai/unbrowse", "name": "unbrowse-ai/unbrowse", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/vndee/local-talking-llm", "name": "vndee/local-talking-llm", "date": "2026-03-18", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/anthropics/skills", "name": "anthropics/skills", "date": "2026-03-05", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/chiphuyen/ml-interviews-book", "name": "chiphuyen/ml-interviews-book", "date": "2026-03-05", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/Gen-Verse/OpenClaw-RL", "name": "Gen-Verse/OpenClaw-RL", "date": "2026-03-05", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/HagaiHen/facebook-mcp-server", "name": "HagaiHen/facebook-mcp-server", "date": "2026-03-05", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/Intrect-io/OpenSwarm", "name": "Intrect-io/OpenSwarm", "date": "2026-03-05", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/RightNow-AI/openfang", "name": "RightNow-AI/openfang", "date": "2026-03-05", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/ComposioHQ/agent-orchestrator", "name": "ComposioHQ/agent-orchestrator", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/instavm/clickclickclick", "name": "instavm/clickclickclick", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/LarsCowe/bmalph", "name": "LarsCowe/bmalph", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/lifuguan/IGGT_official", "name": "lifuguan/IGGT_official", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/NVIDIA/Audio2Face-3D-Samples", "name": "NVIDIA/Audio2Face-3D-Samples", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/rtk-ai/rtk", "name": "rtk-ai/rtk", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/Snagnar/Factompiler", "name": "Snagnar/Factompiler", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"},
+    {"url": "https://github.com/xlang-ai/Spider2-V", "name": "xlang-ai/Spider2-V", "date": "2026-03-04", "isNew": true, "source": "facebook.com/Alexaiupdate"}
+  ],
+  "lastUpdated": "2026-03-25T06:15:00Z",
+  "totalRepos": 25
+}

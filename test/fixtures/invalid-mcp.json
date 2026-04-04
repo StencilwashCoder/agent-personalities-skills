@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem"],
+      "transport": "stdio"
+    },
+    "github": {
+      "url": "http://api.github.com/mcp",
+      "transport": "http"
+    },
+    "duplicate-tools": {
+      "command": "node",
+      "args": ["server.js"],
+      "transport": "stdio",
+      "tools": [
+        {
+          "name": "getData",
+          "description": "Get data"
+        },
+        {
+          "name": "getData",
+          "description": "Duplicate tool"
+        }
+      ]
+    },
+    "missing-transport": {
+      "command": "node",
+      "args": ["server.js"]
+    }
+  }
+}
